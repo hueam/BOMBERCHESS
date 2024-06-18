@@ -1,14 +1,54 @@
-// °øÅë ¿µ¿ª
-syntax = "proto3";	// proto3 ¹®¹ý »ç¿ë
+syntax = "proto3";	// proto3 ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
 package Protocol; 
-option csharp_namespace = "Google.Protobuf.Protocol"; // ³×ÀÓ½ºÆäÀÌ½º °°Àº °Í
-// ***********
+option csharp_namespace = "Google.Protobuf.Protocol"; // ï¿½ï¿½ï¿½Ó½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 
-enum CreatureState {
-	CREATURE_STATE_IDLE = 0;
-	CREATURE_STATE_MOVING = 1;
-	CREATURE_STATE_SKILL = 2;
-	CREATURE_STATE_DEAD = 3;
+//import public "Enum.proto";
+//import public "Struct.proto";
+
+enum MsgId {
+	S_ENTER = 0;
+	S_LEAVE = 1;
 }
 
+enum ChessPiece
+{
+	Pawn = 0,
+	Knight = 1,
+    Bishop = 2,
+	Rook = 3,
+    Queen = 4,
+	King 5
+}
+
+
+message S_Enter {
+	ObjectInfo player =1;
+}
+message S_Leave {  
+}
+message S_Spawn {
+	repeated ObjectInfo objects = 1;
+}
+message S_Despawn {
+	repeated int32 objectIds = 1;
+}
+message C_Move {
+	PositionInfo posInfo = 1;
+}
+message S_Move {
+	int32 objectId = 1;
+	PositionInfo posInfo = 2;
+}
+message ObjectInfo {
+	int32 objectId = 1;
+	string name = 2;
+	PositionInfo posInfo = 3;
+}
+message PositionInfo{
+	CreatureState state = 1;
+	MoveDir moveDir = 2;
+	int32 posX = 3;
+	int32 posY = 4;
+	int32 posZ = 5;
+}

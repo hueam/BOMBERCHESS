@@ -13,11 +13,11 @@ namespace GameServer.Session
 
         int _sessionId = 0;
         Dictionary<int, ClientSession> _sessions = new Dictionary<int, ClientSession>();
-        object _lock = new object();
+        object _makeSession = new object();
 
         public ClientSession Generate()
         {
-            lock (_lock)
+            lock (_makeSession)
             {
                 int sessionId = ++_sessionId;
 
@@ -32,7 +32,7 @@ namespace GameServer.Session
         }
         public ClientSession Find(int id)
         {
-            lock (_lock)
+            lock (_makeSession)
             {
                 ClientSession session = null;
                 _sessions.TryGetValue(id, out session);
@@ -41,7 +41,7 @@ namespace GameServer.Session
         }
         public void Remove(ClientSession session)
         {
-            lock (_lock)
+            lock (_makeSession)
             {
                 _sessions.Remove(session.SessionId);
             }

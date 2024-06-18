@@ -13,33 +13,18 @@ namespace GameServer.Session
 {
     public class ClientSession : PacketSession
     {
-        public Player MyPlayer { get; set; }    // 세션에 속한 플레이어 구분
         public int SessionId { get; set; }
+        public int RoomId{ get; set; }
 
         public override void OnConnected(EndPoint endPoint)
         {
             Console.WriteLine($"OnConnected : {endPoint}");
-
-            MyPlayer = ObjectManager.Instance.Add<Player>();    // 플레이어 추가
-            {
-                MyPlayer.Info.Name = $"Player_{MyPlayer.Info.ObjectId}";
-                MyPlayer.Info.PosInfo.State = CreatureState.Idle;
-                MyPlayer.Info.PosInfo.MoveDir = MoveDir.Down;
-                MyPlayer.Info.PosInfo.PosX = 0;
-                MyPlayer.Info.PosInfo.PosY = 0;
-                MyPlayer.Info.PosInfo.PosZ = 0;
-                MyPlayer.Session = this;
-            }
-            RoomManager.Instance.Find(1).EnterGame(MyPlayer);   // 게임 룸 입장!
         }
 
         public override void OnDisconnected(EndPoint endPoint)
         {
-            RoomManager.Instance.Find(1).LeaveGame(MyPlayer.Info.ObjectId);   // 1번방 아웃
-
-
-            //Console.WriteLine($"OnDisconnected : {endPoint}");
-
+            
+            Console.WriteLine($"OnDisconnected : {endPoint}");
         }
 
         public override void OnRecvPacket(ArraySegment<byte> buffer)

@@ -25,8 +25,7 @@ namespace GameServer
 
 			while (true)
 			{
-				RoomManager.Instance.Find(1).Update();	// GameRoom Update 돌리는 부분
-				Thread.Sleep(100);
+				//꺼지지 않게 while(true)
 			}
 		}
 	}

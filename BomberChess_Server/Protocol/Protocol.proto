@@ -1,7 +1,7 @@
-syntax = "proto3";	// proto3 ¹®¹ý »ç¿ë
+syntax = "proto3";	// proto3 ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
 package Protocol; 
-option csharp_namespace = "Google.Protobuf.Protocol"; // ³×ÀÓ½ºÆäÀÌ½º °°Àº °Í
+option csharp_namespace = "Google.Protobuf.Protocol"; // ï¿½ï¿½ï¿½Ó½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 
 //import public "Enum.proto";
 //import public "Struct.proto";
@@ -9,37 +9,18 @@ option csharp_namespace = "Google.Protobuf.Protocol"; // ³×ÀÓ½ºÆäÀÌ½º °°Àº °Í
 enum MsgId {
 	S_ENTER = 0;
 	S_LEAVE = 1;
-	S_SPAWN = 2;	// ´Ù¸¥ ÇÃ·¹ÀÌ¾î ÀÔÀå ¾È³»
-	S_DESPAWN = 3;  // ´Ù¸¥ ÇÃ·¹ÀÌ¾î ÅðÀå ¾È³»
-	C_MOVE = 4;		// ÇÃ·¹ÀÌ¾î -> ¼­¹ö ¿òÁ÷ÀÓ ¾Ë¸²
-	S_MOVE = 5;		// ¼­¹ö -> ÇÃ·¹ÀÌ¾î ¿òÁ÷ÀÓ ¾Ë¸²
-	C_SKILL = 6;
-	S_SKILL = 7;
-	S_ChangeHP = 8;
 }
 
-enum CreatureState
+enum ChessPiece
 {
-    Idle = 0;
-    Moving = 1;
-    Skill = 2;
-    Dead = 3;
+	Pawn = 0;
+	Knight = 1;
+    Bishop = 2;
+	Rook = 3;
+    Queen = 4;
+	King = 5;
 }
 
-enum MoveDir
-{
-    Up = 0;
-    Down = 1;
-    Left = 2;
-    Right = 3;
-}
-
-enum GameObjectType {
-  NONE = 0;
-  PLAYER = 1;
-  MONSTER = 2;
-  Bomb = 3;
-}
 
 message S_Enter {
 	ObjectInfo player =1;
@@ -59,40 +40,13 @@ message S_Move {
 	int32 objectId = 1;
 	PositionInfo posInfo = 2;
 }
-message S_ChangeHp{
-	int32 objectId = 1;
-	int32 hp = 2;
-}
 message ObjectInfo {
 	int32 objectId = 1;
 	string name = 2;
 	PositionInfo posInfo = 3;
-	StatInfo statInfo = 4;
-
 }
 message PositionInfo{
-	CreatureState state = 1;
-	MoveDir moveDir = 2;
 	int32 posX = 3;
 	int32 posY = 4;
 	int32 posZ = 5;
 }
-message C_Skill {
-	SkillInfo info = 1;	// ³»°¡ ¾´ ½ºÅ³¾î¶²°ÇÁö
-}
-message S_Skill {
-	int32 objectId = 1;	// ´©°¡ ¾´°ÇÁö
-	SkillInfo info = 2;	// ¾î¶² ½ºÅ³ÀÎÁö
-}
-message StatInfo{
-	int32 level = 1;
-	int32 hp = 2;
-	int32 maxHp = 3;
-	int32 atk = 4;
-	float speed = 5;
-}
-
-message SkillInfo { // ½ºÅ³¹øÈ£
-	int32 skillId = 1;
-}
-

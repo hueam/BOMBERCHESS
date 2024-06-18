@@ -12,17 +12,17 @@ namespace GameServer
 
         object _lock = new object();
         Dictionary<int, GameRoom> _rooms = new Dictionary<int, GameRoom>();
-        int _roomId = 1;
 
+        private Random _roomIDMaker = new();
         public GameRoom Add()               // 게임룸 새로 생성
         {
             GameRoom gameRoom = new GameRoom();
 
             lock (_lock)
             {
-                gameRoom.RoomId = _roomId;
-                _rooms.Add(_roomId, gameRoom);
-                _roomId++;  // ID 증가
+                int roomID = _roomIDMaker.Next(10000,19999);
+                gameRoom.RoomId = roomID;
+                _rooms.Add(roomID, gameRoom);
             }
 
             return gameRoom;

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "666AKX/NOvQEr+Y0NGx+TQ3doVL5tpGEh8fjkIa2CPHygb+BbJfQmEDnIZWp5tH+8rJFv02FIizCjMZLjQW6ew==",
+  "dgSpecHash": "4Fp0AbJPle5Ax9ss9j8PTbFBIxQmA9z0KL49dlA/XMwoHFAD/F5x3j4v7fdYChitIR3VdVDA3HV+OjWmZNQL3g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\user\\Downloads\\GameServer\\ServerCore\\ServerCore.csproj",
+  "projectFilePath": "D:\\Projects\\BOMBERCHESS\\BomberChess_Server\\ServerCore\\ServerCore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\google.protobuf\\3.26.1\\google.protobuf.3.26.1.nupkg.sha512"
   ],
