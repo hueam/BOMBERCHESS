@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "H+3r1OANKjFymu0wfP8JO+tdWZPDTsGgUcoAYGfG+4NKpb4zTojyiCtIiyb5VwtRGgMwmqBT/0guHGB8//rIKQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\user\\Downloads\\GameServer\\PacketGenerator\\PacketGenerator.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\google.protobuf\\3.26.1\\google.protobuf.3.26.1.nupkg.sha512"
+  ],
+  "logs": []
+}
