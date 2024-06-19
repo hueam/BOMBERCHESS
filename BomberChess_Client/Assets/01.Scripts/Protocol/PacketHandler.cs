@@ -11,5 +11,11 @@ using System.ComponentModel;
 
 class PacketHandler
 {
+    public static void S_EnterHandler(PacketSession session, IMessage message)
+    {
+    }
 
+    public static void S_LeaveHandler(PacketSession session, IMessage message)
+    {
+    }
 }
