@@ -8,7 +8,14 @@ option csharp_namespace = "Google.Protobuf.Protocol"; // ���ӽ����
 
 enum MsgId {
 	S_ENTER = 0;
-	S_LEAVE = 1;
+	C_MAKEROOM = 1;
+	S_MAKEROOM = 2;
+	C_ENTERROOM = 3;
+	S_ENTERROOM = 4;
+	S_NEWENTERROOM = 5;
+	C_LEAVEROOM = 6;
+	C_SEARCHROOM = 7;
+	S_SENDROOMLIST = 8;
 }
 
 enum ChessPiece
@@ -21,32 +28,47 @@ enum ChessPiece
 	King = 5;
 }
 
+message S_Enter
+{
+	int32 userId = 1;
+}
+message C_Makeroom
+{
+	int32 userId = 1;
+	string roomName = 2;
+}
+message S_Makeroom
+{
+	string roomId = 1;
+}
+message C_Enterroom
+{
+	int32 userId = 1;
+	string roomId = 2;
+}
+message S_Enterroom
+{
+	bool enter = 1;
+	repeated int32 otherPlayers = 2;
+}
+message S_Newenterroom
+{
+	int32 userId = 1;
+}
+message C_Leaveroom
+{
+	int32 userId = 1;
 
-message S_Enter {
-	ObjectInfo player =1;
 }
-message S_Leave {  
+message C_Searchroom
+{
+
 }
-message S_Spawn {
-	repeated ObjectInfo objects = 1;
+message S_Sendroomlist
+{
+
 }
-message S_Despawn {
-	repeated int32 objectIds = 1;
-}
-message C_Move {
-	PositionInfo posInfo = 1;
-}
-message S_Move {
-	int32 objectId = 1;
-	PositionInfo posInfo = 2;
-}
-message ObjectInfo {
-	int32 objectId = 1;
-	string name = 2;
-	PositionInfo posInfo = 3;
-}
-message PositionInfo{
-	int32 posX = 3;
-	int32 posY = 4;
-	int32 posZ = 5;
+message RoomSetting{
+	int32 maxPlayer = 1;
+	bool isSecret = 2;
 }

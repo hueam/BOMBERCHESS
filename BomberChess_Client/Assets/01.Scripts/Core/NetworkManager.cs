@@ -11,6 +11,8 @@ public class NetworkManager : MonoSingleton<NetworkManager>
 {
 	ServerSession _session = new ServerSession();
 
+	public int userId;
+
 	public void Send(IMessage packet)
 	{
 		// 패킷 헤더 정의

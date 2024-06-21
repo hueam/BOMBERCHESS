@@ -23,7 +23,15 @@ class PacketManager
 
 
 	public void Register()
-	{
+	{		
+		_onRecv.Add((ushort)MsgId.CMakeroom, MakePacket<C_Makeroom>);
+		_handler.Add((ushort)MsgId.CMakeroom, PacketHandler.C_MakeroomHandler);		
+		_onRecv.Add((ushort)MsgId.CEnterroom, MakePacket<C_Enterroom>);
+		_handler.Add((ushort)MsgId.CEnterroom, PacketHandler.C_EnterroomHandler);		
+		_onRecv.Add((ushort)MsgId.CLeaveroom, MakePacket<C_Leaveroom>);
+		_handler.Add((ushort)MsgId.CLeaveroom, PacketHandler.C_LeaveroomHandler);		
+		_onRecv.Add((ushort)MsgId.CSearchroom, MakePacket<C_Searchroom>);
+		_handler.Add((ushort)MsgId.CSearchroom, PacketHandler.C_SearchroomHandler);
 	}
 
 	public void OnRecvPacket(PacketSession session, ArraySegment<byte> buffer)

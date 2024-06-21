@@ -11,24 +11,23 @@ namespace GameServer
         public static RoomManager Instance { get; } = new RoomManager();
 
         object _lock = new object();
-        Dictionary<int, GameRoom> _rooms = new Dictionary<int, GameRoom>();
+        Dictionary<string, GameRoom> _rooms = new Dictionary<string, GameRoom>();
 
-        private Random _roomIDMaker = new();
         public GameRoom Add()               // 게임룸 새로 생성
         {
             GameRoom gameRoom = new GameRoom();
 
             lock (_lock)
             {
-                int roomID = _roomIDMaker.Next(10000,19999);
-                gameRoom.RoomId = roomID;
-                _rooms.Add(roomID, gameRoom);
+                string id = Guid.NewGuid().ToString();
+                gameRoom.RoomId = id;
+                _rooms.Add(id, gameRoom);
             }
 
             return gameRoom;
         }
 
-        public bool Remove(int roomId)      // 게임룸 제거
+        public bool Remove(string roomId)      // 게임룸 제거
         {
             lock (_lock)
             {
@@ -36,7 +35,7 @@ namespace GameServer
             }
         }
 
-        public GameRoom Find(int roomId)    // 게임룸 찾기
+        public GameRoom Find(string roomId)    // 게임룸 찾기
         {
             lock (_lock)
             {

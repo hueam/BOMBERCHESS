@@ -15,7 +15,7 @@ namespace GameServer
     public class GameRoom
     {
         object _lock = new object();
-        public int RoomId { get; set; } // Room 고유ID
+        public string RoomId { get; set; } // Room 고유ID
 
         Dictionary<int, ClientSession> _players = new Dictionary<int, ClientSession>();   // List -> Dictionary 
 
