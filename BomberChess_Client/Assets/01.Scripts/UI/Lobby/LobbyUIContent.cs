@@ -14,6 +14,7 @@ using UnityEngine;
 public class LobbyUIContent : UIContent
 {
     [SerializeField]private RoomListUI roomList;
+    [SerializeField]private RoomMaker roomMaker;
     public void ActiveRoomList()
     {
         

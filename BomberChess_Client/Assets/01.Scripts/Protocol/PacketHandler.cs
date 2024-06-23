@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using UnityEngine;
 
 
 class PacketHandler
@@ -27,7 +28,8 @@ class PacketHandler
 
     public static void S_MakeroomHandler(PacketSession session, IMessage message)
     {
-        throw new NotImplementedException();
+        S_Makeroom p = (S_Makeroom)message;
+        Debug.Log($"{p.RoomId}");
     }
 
     public static void S_NewenterroomHandler(PacketSession session, IMessage message)

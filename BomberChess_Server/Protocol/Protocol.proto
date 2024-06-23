@@ -35,7 +35,7 @@ message S_Enter
 message C_Makeroom
 {
 	int32 userId = 1;
-	string roomName = 2;
+	RoomInfo info = 2;
 }
 message S_Makeroom
 {
@@ -68,7 +68,7 @@ message S_Sendroomlist
 {
 
 }
-message RoomSetting{
-	int32 maxPlayer = 1;
-	bool isSecret = 2;
+message RoomInfo{
+	string roomId = 1;
+	string roomName = 2;
 }

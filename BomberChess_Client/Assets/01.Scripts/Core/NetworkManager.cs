@@ -39,7 +39,7 @@ public class NetworkManager : MonoSingleton<NetworkManager>
 
     private void Send(ArraySegment<byte> arraySegment)
     {
-		_session.Send(arraySegment);
+		_session.Send(arraySegment);  
     }
 
 	private void Awake() 

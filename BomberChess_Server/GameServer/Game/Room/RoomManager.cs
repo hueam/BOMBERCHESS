@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GameServer.Session;
+using Google.Protobuf.Protocol;
 
 namespace GameServer
 {
@@ -13,15 +15,16 @@ namespace GameServer
         object _lock = new object();
         Dictionary<string, GameRoom> _rooms = new Dictionary<string, GameRoom>();
 
-        public GameRoom Add()               // 게임룸 새로 생성
+        public GameRoom Add(ClientSession client,RoomInfo info)               // 게임룸 새로 생성
         {
             GameRoom gameRoom = new GameRoom();
 
             lock (_lock)
             {
-                string id = Guid.NewGuid().ToString();
-                gameRoom.RoomId = id;
-                _rooms.Add(id, gameRoom);
+                info.RoomId = Guid.NewGuid().ToString();
+                gameRoom.Info = info;
+                gameRoom.SetOwner(client);
+                _rooms.Add(info.RoomId, gameRoom);
             }
 
             return gameRoom;

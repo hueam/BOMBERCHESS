@@ -15,10 +15,14 @@ namespace GameServer
     public class GameRoom
     {
         object _lock = new object();
-        public string RoomId { get; set; } // Room 고유ID
-
+        public RoomInfo Info { get; set; }
+        private ClientSession _ownerSession;
         Dictionary<int, ClientSession> _players = new Dictionary<int, ClientSession>();   // List -> Dictionary 
 
+        public void SetOwner(ClientSession session)
+        {
+            _ownerSession = session;
+        }   
         // 방에 들어가기
         public void EnterGame(ClientSession session)
         {
@@ -33,12 +37,12 @@ namespace GameServer
 
         public void LeaveGame(int sessionId)
         {
-            if(!_players.ContainsKey(sessionId))
+            if (!_players.ContainsKey(sessionId))
             {
                 Console.WriteLine($"{sessionId} is not have this Room");
                 return;
             }
-            lock(_lock)
+            lock (_lock)
             {
                 _players.Remove(sessionId);
             }

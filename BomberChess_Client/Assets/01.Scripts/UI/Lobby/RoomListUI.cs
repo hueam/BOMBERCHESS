@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Google.Protobuf.Protocol;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class RoomListUI : MonoBehaviour
 {
-    [SerializeField] private Button RoomInfo;
+    [SerializeField] private Button roomBtnPref;
     [SerializeField]private ScrollRect scroll;
 
     public void AddRoomList()
     {
-        RoomInfo room = null;
-        room.transform.SetParent(scroll.content);
+        Button btn = Instantiate(roomBtnPref);
+        btn.transform.SetParent(scroll.content);
     }
 }

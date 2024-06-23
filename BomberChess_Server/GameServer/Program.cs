@@ -7,12 +7,10 @@ namespace GameServer
 {
     internal class Program
 	{
-         static Listener _listener = new Listener();
+        static Listener _listener = new Listener();
 
 		static void Main(string[] args)
 		{
-            RoomManager.Instance.Add();
-
             // DNS (Domain Name)
             // www.rookiss.com -> 123.123.123.12
             string host = Dns.GetHostName();
