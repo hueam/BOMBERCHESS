@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Video;
 
-public class RoomMaker : MonoBehaviour
+public class RoomMaker : LobbyUI
 {
     [SerializeField] TMP_InputField roomName;
 
@@ -15,7 +15,7 @@ public class RoomMaker : MonoBehaviour
         RoomInfo info = new();
         info.RoomId = string.Empty;
         info.RoomName = roomName.text;
-        packet.UserId = NetworkManager.Instance.userId;
+        info.Start = false;
         packet.Info = info;
         NetworkManager.Instance.Send(packet);
     }

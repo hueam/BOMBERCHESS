@@ -14,13 +14,12 @@ namespace GameServer.Session
     public class ClientSession : PacketSession
     {
         public int SessionId { get; set; }
-        public int RoomId{ get; set; }
 
         public override void OnConnected(EndPoint endPoint)
         {
             Console.WriteLine($"OnConnected : {endPoint}");
             S_Enter packet = new();
-            packet.UserId = SessionId;
+            
             ProtoSend(packet);
         }
 

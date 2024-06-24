@@ -15,7 +15,7 @@ class PacketHandler
     public static void S_EnterHandler(PacketSession session, IMessage message)
     {
         S_Enter p = message as S_Enter;
-        NetworkManager.Instance.userId = p.UserId;
+        NetworkManager.Instance.Send(p);
     }
 
     public static void S_LeaveHandler(PacketSession session, IMessage message)
@@ -29,7 +29,8 @@ class PacketHandler
     public static void S_MakeroomHandler(PacketSession session, IMessage message)
     {
         S_Makeroom p = (S_Makeroom)message;
-        Debug.Log($"{p.RoomId}");
+        Debug.Log($"{p.Info.RoomId},{p.Info.RoomName}");
+        UIManager.Instance.GetContent<LobbyUIContent>().ActiveUI(LobbyUIEnum.Room,true);
     }
 
     public static void S_NewenterroomHandler(PacketSession session, IMessage message)
@@ -39,6 +40,12 @@ class PacketHandler
 
     public static void S_SendroomlistHandler(PacketSession session, IMessage message)
     {
-        throw new NotImplementedException();
+        S_Sendroomlist p = message as S_Sendroomlist;
+        RoomListUI.rooms = p.Rooms.ToList();
+        UIManager.Instance.GetContent<LobbyUIContent>().ReloadRoomList();;
+    }
+
+    public static void S_ReadyHandler(PacketSession session, IMessage message)
+    {
     }
 }

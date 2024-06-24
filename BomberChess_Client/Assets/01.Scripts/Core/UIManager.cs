@@ -10,12 +10,12 @@ using UnityEngine;
 public class UIManager : MonoSingleton<UIManager>
 {
     private UIContent _currentUI;
-    public UIContent GetContent<T>() where T : UIContent
+    public T GetContent<T>() where T : UIContent
     {
-        if(_currentUI != null) return _currentUI;
+        if(_currentUI != null && _currentUI is T) return _currentUI as T;
 
         _currentUI = FindObjectOfType<UIContent>();
-        return _currentUI;
+        return _currentUI as T;
     }
 
 

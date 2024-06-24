@@ -14,7 +14,8 @@ namespace GameServer
 
         object _lock = new object();
         Dictionary<string, GameRoom> _rooms = new Dictionary<string, GameRoom>();
-
+        List<RoomInfo> _info = new();
+        public List<RoomInfo> Rooms => _info; 
         public GameRoom Add(ClientSession client,RoomInfo info)               // 게임룸 새로 생성
         {
             GameRoom gameRoom = new GameRoom();
@@ -25,6 +26,7 @@ namespace GameServer
                 gameRoom.Info = info;
                 gameRoom.SetOwner(client);
                 _rooms.Add(info.RoomId, gameRoom);
+                _info.Add(info);
             }
 
             return gameRoom;

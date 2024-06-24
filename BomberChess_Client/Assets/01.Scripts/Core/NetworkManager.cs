@@ -12,6 +12,7 @@ public class NetworkManager : MonoSingleton<NetworkManager>
 	ServerSession _session = new ServerSession();
 
 	public int userId;
+	public Room curRoom;
 
 	public void Send(IMessage packet)
 	{

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -11,13 +13,34 @@ using UnityEngine;
 /// Exit
 /// 정도가 필요하다
 /// </summary>
+
+public enum LobbyUIEnum
+{
+    RoomListUI,
+    RoomMake,
+    Room
+}
+
 public class LobbyUIContent : UIContent
 {
-    [SerializeField]private RoomListUI roomList;
-    [SerializeField]private RoomMaker roomMaker;
-    public void ActiveRoomList()
-    {
-        
-    }
+    [SerializeField] private List<LobbyUI> uis;
+    private Dictionary<LobbyUIEnum,LobbyUI> uiDic = new();
     
+    private void Awake() 
+    {
+        foreach(var ui in uis)
+        {
+            uiDic.Add(ui.type,ui);
+        }
+    }
+    public void ActiveUI(LobbyUIEnum type,bool value)
+    {
+        uiDic[type].gameObject.SetActive(value);
+    }
+
+    public void ReloadRoomList()
+    {
+        RoomListUI ui = uiDic[LobbyUIEnum.RoomListUI] as RoomListUI;
+        ui.AddRoomList();
+    }
 }
