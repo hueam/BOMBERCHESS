@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Google.Protobuf.Protocol;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Room : LobbyUI
+public class RoomUI : LobbyUI
 {
 
     private Dictionary<int, RoomUserInfo> _id2Info;
+
+    [SerializeField] Button startBtn;
     public void UpdateInfo()
     {
 

@@ -11,6 +11,10 @@ public enum SceneType
 } 
 public class GameManager : MonoSingleton<GameManager>
 {
+    public PoolList poolList;
+    private void Awake() {
+        PoolManager.Instance.Init(poolList);
+    }
     public void SceneChange(SceneType sceneType, Action EndChangeScene = null) 
     {
         StartCoroutine(SceneChangeCor(sceneType, EndChangeScene));

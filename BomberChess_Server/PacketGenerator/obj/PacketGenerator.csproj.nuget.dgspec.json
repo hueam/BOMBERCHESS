@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\Downloads\\GameServer\\PacketGenerator\\PacketGenerator.csproj": {}
+    "D:\\Projects\\BOMBERCHESS\\BomberChess_Server\\PacketGenerator\\PacketGenerator.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\Downloads\\GameServer\\PacketGenerator\\PacketGenerator.csproj": {
+    "D:\\Projects\\BOMBERCHESS\\BomberChess_Server\\PacketGenerator\\PacketGenerator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\Downloads\\GameServer\\PacketGenerator\\PacketGenerator.csproj",
+        "projectUniqueName": "D:\\Projects\\BOMBERCHESS\\BomberChess_Server\\PacketGenerator\\PacketGenerator.csproj",
         "projectName": "PacketGenerator",
-        "projectPath": "C:\\Users\\user\\Downloads\\GameServer\\PacketGenerator\\PacketGenerator.csproj",
+        "projectPath": "D:\\Projects\\BOMBERCHESS\\BomberChess_Server\\PacketGenerator\\PacketGenerator.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\Downloads\\GameServer\\PacketGenerator\\obj\\",
+        "outputPath": "D:\\Projects\\BOMBERCHESS\\BomberChess_Server\\PacketGenerator\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",

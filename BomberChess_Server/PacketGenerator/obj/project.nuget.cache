@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "H+3r1OANKjFymu0wfP8JO+tdWZPDTsGgUcoAYGfG+4NKpb4zTojyiCtIiyb5VwtRGgMwmqBT/0guHGB8//rIKQ==",
+  "dgSpecHash": "B/cXBtmIQQgumTW3pqS1iOHvPEOl/DeIVnhtZhBeJ4LGiTcnKI12WIOLj0JLNse5iT4UUHrf5YR5axNPMGKa2g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\user\\Downloads\\GameServer\\PacketGenerator\\PacketGenerator.csproj",
+  "projectFilePath": "D:\\Projects\\BOMBERCHESS\\BomberChess_Server\\PacketGenerator\\PacketGenerator.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\google.protobuf\\3.26.1\\google.protobuf.3.26.1.nupkg.sha512"
   ],
