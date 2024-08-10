@@ -12,7 +12,7 @@ public class NetworkManager : MonoSingleton<NetworkManager>
 	ServerSession _session = new ServerSession();
 
 	public int userId;
-	public RoomUI curRoom;
+	public string roomId;
 
 	public void Send(IMessage packet)
 	{
@@ -38,12 +38,12 @@ public class NetworkManager : MonoSingleton<NetworkManager>
 		Send(new ArraySegment<byte>(sendBuffer));
 	}
 
-    private void Send(ArraySegment<byte> arraySegment)
-    {
-		_session.Send(arraySegment);  
-    }
+	private void Send(ArraySegment<byte> arraySegment)
+	{
+		_session.Send(arraySegment);
+	}
 
-	private void Awake() 
+	private void Awake()
 	{
 		DontDestroyOnLoad(gameObject);
 		// DNS (Domain Name System)
@@ -55,19 +55,32 @@ public class NetworkManager : MonoSingleton<NetworkManager>
 		Connector connector = new Connector();
 
 		connector.Connect(endPoint,
-			() => { return _session; },
+			() =>
+			{
+				return _session;
+			},
 			1);
 	}
 
 	public void Update()
 	{
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			Send(new C_Test());
+		}
 		List<PacketMessage> list = PacketQueue.Instance.PopAll();
 		foreach (PacketMessage packet in list)
 		{
 			Action<PacketSession, IMessage> handler = PacketManager.Instance.GetPacketHandler(packet.Id);
 			if (handler != null)
 				handler.Invoke(_session, packet.Message);
-		}	
+		}
 	}
-
+	private void OnDisable()
+	{
+		C_Leave packet = new C_Leave();
+		packet.UserId = userId;
+		packet.RoomId = roomId;
+		Send(packet);
+	}
 }

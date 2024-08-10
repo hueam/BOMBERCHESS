@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -9,14 +10,12 @@ using UnityEngine;
 /// </summary>
 public class UIManager : MonoSingleton<UIManager>
 {
-    private UIContent _currentUI;
-    public T GetContent<T>() where T : UIContent
+    private UIContent _curContent;
+    public T GetContent<T>() where T : UIContent 
     {
-        if(_currentUI != null && _currentUI is T) return _currentUI as T;
+        if(_curContent != null) return _curContent as T; 
 
-        _currentUI = FindObjectOfType<UIContent>();
-        return _currentUI as T;
+        _curContent = FindObjectOfType<T>();
+        return _curContent as T;
     }
-
-
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 public enum PoolType
 {
     RoomElement,
+    RoomUserInfo,
 
 }
 public class PoolManager : MonoSingleton<PoolManager>
@@ -28,6 +29,12 @@ public class PoolManager : MonoSingleton<PoolManager>
             return null;
         }
         return typeByPool[type].Pop();
+    }
+    public PoolableMono Pop(PoolType type,Transform parent)
+    {
+        PoolableMono obj = Pop(type);
+        obj.transform.SetParent(parent);
+        return obj;
     }
 
     public void Push(PoolableMono obj)

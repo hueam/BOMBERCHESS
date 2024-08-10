@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,6 @@ public class LobbyObjcetUI : MeshObjectUI
     protected override void OnMouseDown()
     {
         base.OnMouseDown();
-        UIManager.Instance.GetContent<LobbyUIContent>().ActiveUI(type, true);
+        UIManager.Instance.GetContent<LobbyUIContent>().OpenUI(type);
     }
 }

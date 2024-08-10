@@ -19,6 +19,8 @@ enum MsgId {
 	C_READY = 9;
 	S_READY = 10;
     C_LEAVE = 11;
+	S_LEAVEPLAYER = 12;
+	C_TEST = 13;
 }
 
 enum ChessPiece
@@ -33,10 +35,12 @@ enum ChessPiece
 
 message S_Enter
 {
+	int32 userId = 1;
 }
 message C_Makeroom
 {
-	RoomInfo info = 1;
+	int32 userId = 1;
+	RoomInfo info = 2;
 }
 message S_Makeroom
 {
@@ -44,24 +48,26 @@ message S_Makeroom
 }
 message C_Enterroom
 {
-	string roomId = 1;
+	int32 userId = 1;
+	string roomId = 2;
 }
 message S_Enterroom
 {
 	bool enter = 1;
-	int32 otherUserId = 2;
+	repeated RoomUserInfo otherUserId = 2;
+	RoomInfo info = 3;
 }
 message S_Newenterroom
 {
+	int32 userId = 1;
 }
 message C_Leaveroom
 {
 	int32 userId = 1;
-
+	string roomId = 2;
 }
 message C_Searchroom
 {
-
 }
 message S_Sendroomlist
 {
@@ -74,16 +80,35 @@ message S_Ready
 }
 message C_Ready
 {
-	string roomId = 1;
-	bool ready = 2;
+	int32 userId = 1;
+	string roomId = 2;
 }
 
 message C_Leave
 {
+	int32 userId = 1;
+    string roomId = 2;
+}
+
+message S_Leaveplayer
+{
+	int32 userId = 1;
+	RoomInfo roomInfo = 2;
 }
 
 message RoomInfo{
 	string RoomId = 1;
 	string RoomName = 2;
-	bool start = 3;
+	int32 maxUser = 3;
+	int32 ownerId = 4;
+}
+
+message RoomUserInfo
+{
+	int32 userId = 1;
+	bool ready = 2;
+}
+message C_Test
+{
+
 }

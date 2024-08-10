@@ -22,7 +22,7 @@ namespace GameServer.Session
                 int sessionId = ++_sessionId;
 
                 ClientSession session = new ClientSession();
-                session.SessionId = sessionId;
+                session.SessionId = _sessionId;
                 _sessions.Add(sessionId, session);
 
                 Console.WriteLine($"Connected : {sessionId}");
@@ -39,11 +39,11 @@ namespace GameServer.Session
                 return session;
             }
         }
-        public void Remove(ClientSession session)
+        public void Remove(int id)
         {
             lock (_makeSession)
             {
-                _sessions.Remove(session.SessionId);
+                _sessions.Remove(id);
             }
         }
     }

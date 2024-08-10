@@ -21,26 +21,29 @@ public enum LobbyUIEnum
     Room
 }
 
-public class LobbyUIContent : UIContent
+public class LobbyUIContent : UIContent<LobbyUIEnum>
 {
-    [SerializeField] private List<LobbyUI> uis;
-    private Dictionary<LobbyUIEnum,LobbyUI> uiDic = new();
-    
-    private void Awake() 
-    {
-        foreach(var ui in uis)
-        {
-            uiDic.Add(ui.type,ui);
-        }
-    }
-    public void ActiveUI(LobbyUIEnum type,bool value)
-    {
-        uiDic[type].gameObject.SetActive(value);
-    }
-
     public void ReloadRoomList()
     {
-        RoomListUI ui = uiDic[LobbyUIEnum.RoomListUI] as RoomListUI;
+        RoomListUI ui = GetUI<RoomListUI>(LobbyUIEnum.RoomListUI);
         ui.AddRoomList();
+    }
+
+    public override void CloseAllUI()
+    {
+        foreach (var ui in _uiDic.Values)
+        {
+            ui.gameObject.SetActive(false);
+        }
+    }
+
+    public override void OpenUI(LobbyUIEnum type)
+    {
+        _uiDic[type].Open();
+    }
+
+    public override void CloseUI(LobbyUIEnum type)
+    {
+        _uiDic[type].Close();
     }
 }

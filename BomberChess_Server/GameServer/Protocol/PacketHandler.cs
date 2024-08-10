@@ -7,58 +7,90 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GameServer.Session;
-using System.ComponentModel;
 using GameServer;
-using System.Globalization;
 
 
 class PacketHandler
 {
     public static void C_EnterroomHandler(PacketSession session, IMessage message)
     {
-        
+        C_Enterroom packet = message as C_Enterroom;
+        GameRoom room = RoomManager.Instance.Find(packet.RoomId);
+
+        S_Enterroom recv = new();
+        bool canEnter = false;
+        if (room != null)
+        {
+            canEnter = room.EnterGame(packet.UserId);
+        }
+
+        if (canEnter)
+        {
+            recv.OtherUserId.AddRange(room.userIDs);
+            recv.Info = room.Info;
+        }
+        recv.Enter = canEnter;
+        session.Send(ClientSession.MakeSendBuffer(recv));
     }
 
     public static void C_LeaveroomHandler(PacketSession session, IMessage message)
     {
+        C_Leaveroom packet = message as C_Leaveroom;
+        GameRoom room = RoomManager.Instance.Find(packet.RoomId);
+        if (room != null)
+        {
+            room.LeaveGame(packet.UserId);
+        }
     }
 
     public static void C_MakeroomHandler(PacketSession session, IMessage message)
     {
         C_Makeroom info = message as C_Makeroom;
-        ClientSession cs = session as ClientSession;   
-        GameRoom room = RoomManager.Instance.Add(cs,info.Info);
-
+        GameRoom room = RoomManager.Instance.Add(info);
         S_Makeroom packet = new();
         packet.Info = room.Info;
         Console.WriteLine($"{room.Info.RoomId}, {room.Info.RoomName}");
-        cs.ProtoSend(packet);
+        session.Send(ClientSession.MakeSendBuffer(packet));
     }
 
     public static void C_SearchroomHandler(PacketSession session, IMessage message)
     {
-        ClientSession cs = session as ClientSession;
         S_Sendroomlist p = new();
-        foreach(var i in RoomManager.Instance.Rooms)
+        foreach (var i in RoomManager.Instance.Rooms)
         {
             Console.WriteLine($"{i.RoomName}");
             p.Rooms.Add(i);
         }
-        cs.ProtoSend(p);
+        session.Send(ClientSession.MakeSendBuffer(p));
     }
 
     public static void C_LeaveHandler(PacketSession session, IMessage message)
     {
+        C_Leave packet = message as C_Leave;
+        GameRoom room = RoomManager.Instance.Find(packet.RoomId);
+        if (room != null)
+        {
+            room.LeaveGame(packet.UserId);
+            Console.WriteLine(RoomManager.Instance.Find(packet.RoomId) == null);
+        }
+        SessionManager.Instance.Remove(packet.UserId);
+
     }
 
     public static void C_ReadyHandler(PacketSession session, IMessage message)
     {
         C_Ready p = message as C_Ready;
         GameRoom room = RoomManager.Instance.Find(p.RoomId);
+        room.Ready(p.UserId);
+        Console.WriteLine($"Ready Player{p.UserId}");
+    }
 
-        S_Ready readyP = new();
-        readyP.Ready = p.Ready;
+    public static void C_TestHandler(PacketSession session, IMessage message)
+    {
+        S_Enter p = new();
+        ClientSession cs = session as ClientSession;
+        p.UserId = cs.SessionId;
 
-        room.BroadCast(readyP);
+        cs.ProtoSend(p);
     }
 }

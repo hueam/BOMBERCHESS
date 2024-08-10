@@ -12,3 +12,16 @@ C:\Rookiss\GameServer\ServerCore\obj\Release\net8.0\refint\ServerCore.dll
 C:\Rookiss\GameServer\ServerCore\obj\Release\net8.0\ServerCore.pdb
 C:\Rookiss\GameServer\ServerCore\obj\Release\net8.0\ServerCore.genruntimeconfig.cache
 C:\Rookiss\GameServer\ServerCore\obj\Release\net8.0\ref\ServerCore.dll
+D:\Projects\BOMBERCHESS\BomberChess_Server\ServerCore\bin\Release\net8.0\ServerCore.deps.json
+D:\Projects\BOMBERCHESS\BomberChess_Server\ServerCore\bin\Release\net8.0\ServerCore.dll
+D:\Projects\BOMBERCHESS\BomberChess_Server\ServerCore\bin\Release\net8.0\ServerCore.pdb
+D:\Projects\BOMBERCHESS\BomberChess_Server\ServerCore\obj\Release\net8.0\ServerCore.csproj.AssemblyReference.cache
+D:\Projects\BOMBERCHESS\BomberChess_Server\ServerCore\obj\Release\net8.0\ServerCore.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\BOMBERCHESS\BomberChess_Server\ServerCore\obj\Release\net8.0\ServerCore.AssemblyInfoInputs.cache
+D:\Projects\BOMBERCHESS\BomberChess_Server\ServerCore\obj\Release\net8.0\ServerCore.AssemblyInfo.cs
+D:\Projects\BOMBERCHESS\BomberChess_Server\ServerCore\obj\Release\net8.0\ServerCore.csproj.CoreCompileInputs.cache
+D:\Projects\BOMBERCHESS\BomberChess_Server\ServerCore\obj\Release\net8.0\ServerCore.sourcelink.json
+D:\Projects\BOMBERCHESS\BomberChess_Server\ServerCore\obj\Release\net8.0\ServerCore.dll
+D:\Projects\BOMBERCHESS\BomberChess_Server\ServerCore\obj\Release\net8.0\refint\ServerCore.dll
+D:\Projects\BOMBERCHESS\BomberChess_Server\ServerCore\obj\Release\net8.0\ServerCore.pdb
+D:\Projects\BOMBERCHESS\BomberChess_Server\ServerCore\obj\Release\net8.0\ref\ServerCore.dll

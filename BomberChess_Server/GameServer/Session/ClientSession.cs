@@ -18,9 +18,7 @@ namespace GameServer.Session
         public override void OnConnected(EndPoint endPoint)
         {
             Console.WriteLine($"OnConnected : {endPoint}");
-            S_Enter packet = new();
-            
-            ProtoSend(packet);
+
         }
 
         public override void OnDisconnected(EndPoint endPoint)

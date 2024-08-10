@@ -4,17 +4,21 @@ using Google.Protobuf.Protocol;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RoomListUI : LobbyUI
+public class RoomListUI : UIObject
 {
+    protected override void OnOpen()
+    {
+        ReloadRoom();
+    }
+    protected override void OnClose()
+    {
+    }
     public static List<RoomInfo> rooms = new();
     [SerializeField] private RoomElementUI roomBtnPref;
     [SerializeField]private ScrollRect scroll;
 
     private List<RoomElementUI> roomElements = new();
 
-    private void Awake() {
-        ReloadRoom();
-    }
     private void OnEnable() {
         AddRoomList();
     }
@@ -36,7 +40,7 @@ public class RoomListUI : LobbyUI
     }
     public void ActiveMakeRoom()
     {
-        UIManager.Instance.GetContent<LobbyUIContent>().ActiveUI(LobbyUIEnum.RoomMake,true);
+        UIManager.Instance.GetContent<LobbyUIContent>().OpenUI(LobbyUIEnum.RoomMake);
     }
     public void ReloadRoom()
     {
